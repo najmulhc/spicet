@@ -7,7 +7,7 @@ const HomePage = async () => {
   const message = await getData();
   return (
     <main>
-      <h1>{message}</h1>
+      <h1>{message ? message : "not any data from server"} </h1>
     </main>
   );
 };
