@@ -1,6 +1,6 @@
  
 const HomePage = async () => {
-  const res = await fetch(process.env.NEXT_SERVER_URL as string);
+  const res = await fetch(`${process?.env?.NEXT_SERVER_URL}`);
   const data = await res.json();
   return (
     <main>
