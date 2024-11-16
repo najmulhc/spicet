@@ -15,6 +15,7 @@
     "/packages/backend",
     "/packages/types"
   ], "scripts": {
-    "dev:backend": "bun run --cwd ./packages/server/ dev"
+    "dev:server": "bun run --cwd ./packages/server/ dev", 
+    "dev:client": "bun run --cwd ./packages/client dev"
   }
 }
