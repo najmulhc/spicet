@@ -1,0 +1,29 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": ["airbnb", "airbnb/hooks", "plugin:prettier/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "jsx": true
+  },
+  "plugins": ["react", "react-hooks", "jsx-a11y", "@typescript-eslint"],
+  "rules": {
+    "react/react-in-jsx-scope": "off", // Next.js automatically handles this
+    "import/prefer-default-export": "off",
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "jsx-a11y/anchor-is-valid": "off", // Disabled for Next.js pages
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
+  }
+}

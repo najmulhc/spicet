@@ -11,8 +11,8 @@
   "dependencies": {
     "@types/express": "^5.0.0",
     "express": "^4.21.1"
-  }, 
+  },
   "scripts": {
-    "dev" : "bun --hot src/index.ts"
+    "dev": "bun --hot src/index.ts"
   }
 }

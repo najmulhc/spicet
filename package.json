@@ -5,17 +5,29 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "prettier": "^3.3.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "workspaces": [
-    "/packages/frontend",
-    "/packages/backend",
-    "/packages/types"
-  ], "scripts": {
-    "dev:server": "bun run --cwd ./packages/server/ dev", 
-    "dev:client": "bun run --cwd ./packages/client dev"
+    "/packages/*"
+  ],
+  "scripts": {
+    "dev:server": "bun run --cwd ./packages/server/ dev",
+    "dev:client": "bun run --cwd ./packages/client dev",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write ."
   }
 }
