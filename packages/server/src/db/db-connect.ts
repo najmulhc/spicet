@@ -1,4 +1,10 @@
 import { DataSource } from "typeorm";
+import { CookingStep } from "../entities/cooking-step.entity";
+import { CookingTip } from "../entities/cooking-tip.entity";
+import { Cuisine } from "../entities/cuisine.entity";
+import { Ingredient } from "../entities/ingredient.entity";
+import { Recipe } from "../entities/recipe.entity";
+import { User } from "../entities/user.entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -7,10 +13,11 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: [],
+  entities: [CookingStep, CookingTip, Cuisine, Ingredient, Recipe, User],
   synchronize: true
 });
 
+// this function will connect the server with the database
 const dbConnect = async () => {
   try {
     await AppDataSource.initialize();
