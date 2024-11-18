@@ -1,4 +1,10 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  type Relation
+} from "typeorm";
 import { CookingStep } from "./cooking-step.entity";
 
 @Entity()
@@ -10,7 +16,5 @@ export class CookingTip {
   title!: string;
 
   @OneToOne(() => CookingStep)
-  step!: CookingStep 
-
- 
+  step!: Relation<CookingStep>;
 }

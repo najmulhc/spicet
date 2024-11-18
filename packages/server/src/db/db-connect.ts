@@ -5,6 +5,9 @@ import { Cuisine } from "../entities/cuisine.entity";
 import { Ingredient } from "../entities/ingredient.entity";
 import { Recipe } from "../entities/recipe.entity";
 import { User } from "../entities/user.entity";
+import { RecipeDetail } from "../entities/recipe-detail.entity";
+import { Comment } from "../entities/comment.entity";
+import { RecipeIngredent } from "../entities/recipe-ingredient.entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -13,7 +16,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: [CookingStep, CookingTip, Cuisine, Ingredient, Recipe, User],
+  entities: [CookingStep, CookingTip, Cuisine, Ingredient, Recipe, User , RecipeDetail, Comment, RecipeIngredent, ],
   synchronize: true
 });
 

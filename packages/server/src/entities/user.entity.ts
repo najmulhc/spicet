@@ -7,7 +7,6 @@ import {
   PrimaryGeneratedColumn,
   type Relation
 } from "typeorm";
-import { Recipe } from "./recipe.entity";
 import { RecipeDetail } from "./recipe-detail.entity";
 
 @Entity()

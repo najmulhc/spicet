@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  type Relation
+} from "typeorm";
+import { RecipeIngredent } from "./recipe-ingredient.entity";
 
 @Entity()
 export class Ingredient {
@@ -10,4 +18,10 @@ export class Ingredient {
 
   @Column()
   unitName!: string; // name of the unit
+
+  @OneToMany(
+    () => RecipeIngredent,
+    (recipeIngredient) => recipeIngredient.ingredient
+  )
+  recipes!: Relation<RecipeIngredent>[];
 }

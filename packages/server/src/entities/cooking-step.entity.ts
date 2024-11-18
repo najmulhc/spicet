@@ -28,4 +28,7 @@ export class CookingStep {
  
   @ManyToOne(() => RecipeDetail, (recipeDetail) => recipeDetail.steps)
   recipe!: Relation<RecipeDetail> 
+
+  @OneToOne(() => CookingTip)
+  tip: Relation<CookingTip > | undefined;
 }
