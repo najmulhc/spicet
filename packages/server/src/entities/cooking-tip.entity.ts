@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { CookingStep } from "./cooking-step.entity";
 
 @Entity()
 export class CookingTip {
@@ -7,6 +8,9 @@ export class CookingTip {
 
   @Column()
   title!: string;
+
+  @OneToOne(() => CookingStep)
+  step!: CookingStep 
 
  
 }

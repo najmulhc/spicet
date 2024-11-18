@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { RecipeDetail } from "./recipe-detail.entity";
 
 @Entity()
 export class Recipe {
@@ -11,6 +12,10 @@ export class Recipe {
   @Column()
   name!: string;
  
+
+  @OneToOne(() => RecipeDetail)
+  @JoinColumn()
+  details!: RecipeDetail
 
   @Column() 
   cookTime!: number

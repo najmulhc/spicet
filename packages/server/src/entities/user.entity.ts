@@ -1,4 +1,14 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  type Relation
+} from "typeorm";
+import { Recipe } from "./recipe.entity";
+import { RecipeDetail } from "./recipe-detail.entity";
 
 @Entity()
 export class User {
@@ -18,8 +28,11 @@ export class User {
   @Column()
   createdAt!: Date; // when the user is created
 
-  @Column() 
+  @Column()
   avatar!: string; // avatar image
+
+  @OneToMany(() => RecipeDetail, (recipe) => recipe.user)
+  recipes!: Relation<RecipeDetail>[];
 
   @BeforeInsert()
   setCreatedAt() {
