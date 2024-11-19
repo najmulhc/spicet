@@ -4,12 +4,14 @@ import {
   JoinColumn,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   type Relation
 } from "typeorm";
 import { RecipeDetail } from "./recipe-detail.entity";
 import { Cuisine } from "./cuisine.entity";
+import { UserFav } from "./user-fav.entity";
 
 @Entity()
 export class Recipe {
@@ -36,6 +38,9 @@ export class Recipe {
 
   @ManyToOne(() => Cuisine, (cuisine) => cuisine.recipes)
   cuisine!: Relation<Cuisine>;
+
+  @OneToMany(() => UserFav, (userfav) => userfav.recipe)
+  favs!: Relation<UserFav>[];
 
   // @Column({
   //   array: true

@@ -8,6 +8,7 @@ import {
   type Relation
 } from "typeorm";
 import { RecipeDetail } from "./recipe-detail.entity";
+import { UserFav } from "./user-fav.entity";
 
 @Entity()
 export class User {
@@ -32,6 +33,9 @@ export class User {
 
   @OneToMany(() => RecipeDetail, (recipe) => recipe.user)
   recipes!: Relation<RecipeDetail>[];
+
+  @OneToMany(() => UserFav, (userFav) => userFav.user)
+  favourites!: Relation<UserFav>[];
 
   @BeforeInsert()
   setCreatedAt() {
