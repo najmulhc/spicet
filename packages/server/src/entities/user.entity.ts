@@ -1,8 +1,7 @@
 import {
   BeforeInsert,
   Column,
-  Entity,
-  ManyToOne,
+  Entity, 
   OneToMany,
   PrimaryGeneratedColumn,
   type Relation
@@ -24,6 +23,9 @@ export class User {
 
   @Column() // name of the user
   name!: string;
+
+  @Column() 
+  email!: string;
 
   @Column()
   createdAt!: Date; // when the user is created
