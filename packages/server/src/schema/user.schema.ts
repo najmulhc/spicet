@@ -10,7 +10,9 @@ export const emailSchema = z
   });
 
 export const avatarSchema = z
-  .string()
+  .string({
+    message: "No avatar image link given, please provide an avatar image."
+  })
   .url()
   .refine((url: string) => /\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i.test(url), {
     message:

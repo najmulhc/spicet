@@ -6,7 +6,7 @@ export class ApiError extends Error {
   stack: string;
 
   constructor(
-    statusCode: number,
+    statusCode= 400,
     message = "something went wrong",
     data = null,
     stack = "",
