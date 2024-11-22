@@ -1,6 +1,6 @@
 import { number, object, string } from "zod";
 
-// he wants to create a new recipe!
+
 
 export const recipeNameSchem = string({
   message: "No name of the recipe is given, please provide a name."
@@ -12,10 +12,13 @@ export const recipeNameSchem = string({
   .max(32, {
     message: "The name is too big!"
   });
-export const imageSchema = string()
+
+export const imageSchema = string({
+  message: "No image link is given, we need an image."
+})
   .url()
   .refine((url: string) => /\.(jpeg|jpg|gif|png|webp|bmp|svg)$/i.test(url), {
-    message: "Invalid  image link given, pelase provide a valid image."
+    message: "Invalid image link given, pelase provide a valid image."
   });
 
 export const recipeSchema = object({
