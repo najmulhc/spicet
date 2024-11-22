@@ -29,5 +29,9 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write ."
+  },
+  "dependencies": {
+    "pg": "^8.13.1",
+    "typeorm": "^0.3.20"
   }
 }
