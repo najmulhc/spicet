@@ -1,6 +1,7 @@
 import express from "express";
 import dbConnect from "./db/db-connect";
 import authRouter from "./routes/auth.route";
+import ingredientRouter from './routes/ingredient.route'
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 
 app.use("/api/auth", authRouter);
+app.use('/api/ingredient' , ingredientRouter)
 
 app.get("/", (req, res) => {
   res.json({
