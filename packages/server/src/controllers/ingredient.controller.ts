@@ -2,30 +2,29 @@ import type { Request, Response } from "express";
 import { ApiError } from "../utils/ApiError";
 import { ingredientRepository } from "../repositories/ingredient.repository";
 import { ApiResponse } from "../utils/ApiResponse";
+import { Ingredient } from "../entities/ingredient.entity";
 
 export const postIngredient = async (req: Request, res: Response) => {
   const ingredient = req.body;
-  const createdIngredient = await ingredientRepository.create({
+  const createdIngredient = await ingredientRepository.createQueryBuilder().insert().into(Ingredient).values({
     ...ingredient
-  });
-  const savedIngredient = await ingredientRepository.save(createdIngredient);
+  }).execute();
   res
     .status(201)
     .json(
       new ApiResponse(
         201,
-        { ingredient: savedIngredient },
+        { ingredient: createdIngredient },
         "Successfully stored the ingredient"
       )
     );
 };
 
 export const getIngredients = async (req: Request, res: Response) => {
-  const ingredients = await ingredientRepository.find({
-    relations: {
-      recipes: true
-    }
-  });
+  const ingredients = await ingredientRepository
+    .createQueryBuilder()
+    .getManyAndCount();
+
   res.status(200).json(
     new ApiResponse(
       200,
@@ -37,9 +36,34 @@ export const getIngredients = async (req: Request, res: Response) => {
   );
 };
 
+export const getOneIngredient = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  console.log(id);
+  const ingredient = await ingredientRepository
+    .createQueryBuilder("ingredient")
+    .where(  { id })
+    .getOne();
 
-export const deleteIngredient = async (req: Request, res:Response) => {
-     // need to write
-}
+    
+  res.status(200).json(
+    new ApiResponse(200, {
+      ingredient
+    })
+  );
+};
 
-export const udpateIngredient = async (req:Request, res: Response) => {} 
+export const deleteIngredient = async (req: Request, res: Response) => {
+  // need to write
+  const { id } = req.params;
+  const deleted = await ingredientRepository.createQueryBuilder().delete().where({id}).execute();
+
+  res.status(204).json(
+    new ApiResponse(204, {
+      deleted
+    }, 'successfully deleted')
+  );
+};
+
+export const udpateIngredient = async (req: Request, res: Response) => {
+  // need to write
+};
