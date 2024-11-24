@@ -24,7 +24,7 @@ export const imageSchema = string({
 export const recipeSchema = object({
   name: recipeNameSchem,
   image: imageSchema,
-  cooktime: number({
+  cookTime: number({
     message:
       "No cooking time is given, please give the time we need to cook the dish."
   })

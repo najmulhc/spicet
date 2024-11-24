@@ -14,11 +14,15 @@ const validateSchema = (schema: ZodObject<any, any>) => {
       if (error instanceof ZodError) {
         const errors = error.errors.map(
           (issue: any) => `${issue.path.join(".")} is ${issue.message}`
-        ); 
+        );
 
-        throw new ApiError(400 , errors.join(" "));
+        res.status(400).json({
+          message: errors, success: false
+        });
       } else {
-        throw new ApiError(500, "Internal server error!");
+         res.status(500).json({
+          message: 'internal server error', success: false
+         })
       }
     }
   };
