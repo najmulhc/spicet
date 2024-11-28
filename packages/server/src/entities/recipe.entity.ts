@@ -42,6 +42,11 @@ export class Recipe {
   @OneToMany(() => UserFav, (userfav) => userfav.recipe)
   favs!: Relation<UserFav>[];
 
+  @Column({
+    default: false
+  }) 
+  isPublished!: boolean;
+
   // @Column({
   //   array: true
   // })

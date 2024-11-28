@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -17,9 +18,7 @@ import { RecipeIngredent } from "./recipe-ingredient.entity";
 export class RecipeDetail {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
-
-  @Column()
-  name!: string;
+ 
 
   @Column({
     default: 0
@@ -30,6 +29,7 @@ export class RecipeDetail {
   user!: Relation<User>;
 
   @OneToOne(() => Recipe)
+  @JoinColumn({})
   recipe!: Relation<Recipe>;
 
   @OneToMany(() => CookingStep, (cookingStep) => cookingStep.recipe)

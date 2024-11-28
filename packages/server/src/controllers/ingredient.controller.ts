@@ -67,3 +67,16 @@ export const deleteIngredient = async (req: Request, res: Response) => {
 export const udpateIngredient = async (req: Request, res: Response) => {
   // need to write
 };
+
+
+// add ingredient to recipe 
+
+export const addIngredientToRecipe = async (req:Request, res: Response ) => { 
+
+  
+}
+
+// get all ingredients by recipe 
+
+// remove ingredient  from recipe 
+

@@ -4,6 +4,7 @@ import type { NextFunction, Request, Response } from "express";
 import { ApiError } from "../utils/ApiError";
 import { userRepository } from "../repositories/user.repository";
 
+
 const validatePoster = async (
   req: Request,
   res: Response,
@@ -23,6 +24,7 @@ const validatePoster = async (
     })
     .getOneOrFail();
   if (foundUser) {
+    req.body.user = foundUser
     next();
   } else {
     throw new ApiError(401, "You do not have any account registered");

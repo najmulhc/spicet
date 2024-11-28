@@ -2,6 +2,7 @@ import {
   BeforeInsert,
   Column,
   Entity, 
+  JoinColumn, 
   OneToMany,
   PrimaryGeneratedColumn,
   type Relation
@@ -34,6 +35,7 @@ export class User {
   avatar!: string; // avatar image
 
   @OneToMany(() => RecipeDetail, (recipe) => recipe.user)
+  @JoinColumn()
   recipes!: Relation<RecipeDetail>[];
 
   @OneToMany(() => UserFav, (userFav) => userFav.user)

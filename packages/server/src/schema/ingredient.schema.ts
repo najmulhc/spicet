@@ -12,7 +12,7 @@ export const ingredientSchema = object({
 });
 
 export const recipeIngredientSchema = object({
-  recipe: uuidSchema("recipe"),
+ 
   ingredient: uuidSchema("ingredient"),
   count: number({
     message:
