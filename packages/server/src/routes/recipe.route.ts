@@ -11,7 +11,11 @@ import { recipeSchema } from "../schema/recipe.schema";
 import { object } from "zod";
 import postAuthMiddleware from "../middleware/post-auth.middleware";
 import { recipeIngredientSchema } from "../schema/ingredient.schema";
-import { addIngredientToRecipe } from "../controllers/ingredient.controller";
+import {
+  addIngredientToRecipe,
+  deleteIngredientFromRecipe,
+  getIngredientsByRecipe
+} from "../controllers/ingredient.controller";
 
 const recipeRouter = Router();
 
@@ -34,11 +38,18 @@ recipeRouter
     asyncHandler(editRecipeDetail)
   )
   .post(
-    "/:recipeDetailId/add-ingredient",
+    "/:recipeDetailId/ingredients",
     asyncHandler(validatePoster),
     asyncHandler(postAuthMiddleware),
     validateSchema(recipeIngredientSchema),
     asyncHandler(addIngredientToRecipe)
+  )
+  .get("/:recipeDetailId/ingredients", asyncHandler(getIngredientsByRecipe))
+  .delete(
+    "/:recipeDetailId/ingredient/:recipeIngredientId",
+    asyncHandler(validatePoster),
+    asyncHandler(postAuthMiddleware),
+    asyncHandler(deleteIngredientFromRecipe)
   );
 
 export default recipeRouter;

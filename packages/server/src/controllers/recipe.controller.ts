@@ -84,3 +84,9 @@ export const editRecipeDetail = async (req: Request, res: Response) => {
     })
   );
 };
+
+
+// publish toggler the user must be the poster 
+export const publishToggler = (req:Request, res :Response ) => {
+  
+}
