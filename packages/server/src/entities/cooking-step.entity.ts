@@ -22,13 +22,14 @@ export class CookingStep {
   description!: string;
 
   @Column({
-    default: undefined
+    default: null
   })
-  img: string | undefined;
+  img!: string | null;
  
   @ManyToOne(() => RecipeDetail, (recipeDetail) => recipeDetail.steps)
   recipe!: Relation<RecipeDetail> 
 
   @OneToOne(() => CookingTip)
-  tip: Relation<CookingTip > | undefined;
+  @JoinColumn()
+  tip: Relation<CookingTip > ;
 }

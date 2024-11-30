@@ -16,6 +16,11 @@ import {
   deleteIngredientFromRecipe,
   getIngredientsByRecipe
 } from "../controllers/ingredient.controller";
+import { cookingStepSchema } from "../schema/cookingStep.schema";
+import {
+  addCookingStep,
+  getAllCookingStepsByRecipe
+} from "../controllers/cooking-step.controller";
 
 const recipeRouter = Router();
 
@@ -50,6 +55,18 @@ recipeRouter
     asyncHandler(validatePoster),
     asyncHandler(postAuthMiddleware),
     asyncHandler(deleteIngredientFromRecipe)
-  );
+  )
+  .post(
+    "/:recipeDetailId/step",
+    asyncHandler(validatePoster),
+    asyncHandler(postAuthMiddleware),
+    validateSchema(
+      object({
+        step: cookingStepSchema
+      })
+    ),
+    asyncHandler(addCookingStep)
+  )
+  .get("/:recipeDetailId/step", asyncHandler(getAllCookingStepsByRecipe));
 
 export default recipeRouter;

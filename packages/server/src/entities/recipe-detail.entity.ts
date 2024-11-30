@@ -33,6 +33,7 @@ export class RecipeDetail {
   recipe!: Relation<Recipe>;
 
   @OneToMany(() => CookingStep, (cookingStep) => cookingStep.recipe)
+  @JoinColumn()
   steps!: Relation<CookingStep>[];
 
   @OneToMany(() => Comment, (comment) => comment.recipe)

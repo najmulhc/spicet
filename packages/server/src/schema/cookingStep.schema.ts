@@ -1,7 +1,6 @@
 import { object, string } from "zod";
 import { cookingTipSchema } from "./cookingTip.schema";
-import { imageSchema } from "./recipe.schema";
-import { uuidSchema } from "./shared.schema";
+import { imageSchema } from "./recipe.schema"; 
 
 export const cookingStepSchema = object({
   title: string({
@@ -11,6 +10,5 @@ export const cookingStepSchema = object({
     message: "Please provide a description of the step"
   }),
   img: imageSchema.optional(),
-  tip: cookingTipSchema.optional(),
-  recipe: uuidSchema("recipe")
+  tip: cookingTipSchema.optional()
 });

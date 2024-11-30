@@ -1,5 +1,4 @@
-import type { Request, Response } from "express";
-import { ApiError } from "../utils/ApiError";
+import type { Request, Response } from "express"; 
 import { ingredientRepository } from "../repositories/ingredient.repository";
 import { ApiResponse } from "../utils/ApiResponse";
 import { Ingredient } from "../entities/ingredient.entity";

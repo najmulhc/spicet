@@ -1,7 +1,6 @@
 import type { Request, Response } from "express";
 import { ApiResponse } from "../utils/ApiResponse";
-import { recipeRepository } from "../repositories/recipe.repository";
-import { Recipe } from "../entities/recipe.entity";
+import { recipeRepository } from "../repositories/recipe.repository"; 
 import { recipeDetailRepository } from "../repositories/recipe-detail.repository";
 
 export const postRecipe = async (req: Request, res: Response) => {
@@ -13,11 +12,8 @@ export const postRecipe = async (req: Request, res: Response) => {
   // get the user
   const { user } = req.body;
 
-  // create the recipeDetail
-  //  const detailedRecipe = await recipeDetailRepository.create()
-  //   detailedRecipe.user = user;
-  //   detailedRecipe.recipe = insertedRecipe;
-
+ 
+// make the recipe
   const detailedRecipe = await recipeDetailRepository.create();
   detailedRecipe.user = user;
   detailedRecipe.recipe = savedRecipe;
@@ -33,7 +29,7 @@ export const postRecipe = async (req: Request, res: Response) => {
     .getMany();
 
   res.json(
-    new ApiResponse(200, {
+    new ApiResponse(201, {
       recipe: responseDetail
     })
   );
@@ -56,17 +52,8 @@ export const getRecipes = async (req: Request, res: Response) => {
   );
 };
 
-
-
-// add step to recipe 
-
-// remove step to recipe 
-
-
-// publish the recipe 
-
-
-// get the edit acces
+// add step to recipe
+ 
 
 export const editRecipeDetail = async (req: Request, res: Response) => {
   const recipeDetail = await recipeDetailRepository
@@ -74,7 +61,12 @@ export const editRecipeDetail = async (req: Request, res: Response) => {
     .leftJoinAndSelect("recipeDetail.ingredients", "ingredient")
     .leftJoinAndSelect("recipeDetail.steps", "cookingSteps")
     .leftJoin("recipeDetail.recipe", "recipe")
-    .addSelect(["recipe.cookTime", "recipe.name", "recipe.image", 'recipe.isPublished' ]) 
+    .addSelect([
+      "recipe.cookTime",
+      "recipe.name",
+      "recipe.image",
+      "recipe.isPublished"
+    ])
     .where("recipeDetail.id = :id", { id: req.body.recipe.id })
     .getOne();
 
@@ -85,8 +77,9 @@ export const editRecipeDetail = async (req: Request, res: Response) => {
   );
 };
 
+// publish toggler the user must be the poster
+export const publishToggler = (req: Request, res: Response) => {
+  const {steps, ingredients} = req.body.recipe;
 
-// publish toggler the user must be the poster 
-export const publishToggler = (req:Request, res :Response ) => {
   
-}
+};
